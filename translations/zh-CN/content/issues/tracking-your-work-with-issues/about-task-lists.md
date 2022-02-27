@@ -51,11 +51,20 @@ topics:
 
 {% data reusables.repositories.task-list-markdown %}
 
+{% tip %}
+
+**提示：**您不能在已关闭的议题或链接的拉取请求中创建任务列表项目。
+
+{% endtip %}
+
 ## 对任务重新排序
 
 您可以单击任务左边的复选框并将任务拖放至新位置，对任务列表中的项目重新排序。 您可以在相同的评论中对不同列表中的任务重新排序，但是不能在不同的评论中重新排序任务。
 
-![重新排序的任务列表](/assets/images/help/writing/task-list-reordered.gif)
+{% ifversion fpt %} ![重新排序的任务列表](/assets/images/help/writing/task-list-reordered.gif)
+{% else %} ![Reordered task list](/assets/images/enterprise/writing/task-lists-reorder.gif) {% endif %}
+
+{% ifversion fpt %}
 
 ## 导航跟踪的议题
 
@@ -63,6 +72,9 @@ topics:
 
 ![跟踪示例](/assets/images/help/writing/task_list_tracked.png)
 
+{% endif %}
+
 ## 延伸阅读
 
-* "[基本撰写和格式语法](/articles/basic-writing-and-formatting-syntax)"
+* "[基本书写和格式语法](/articles/basic-writing-and-formatting-syntax)"{% if code-scanning-task-lists %}
+* "[使用任务列表跟踪议题中的 {% data variables.product.prodname_code_scanning %} 警报](/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/tracking-code-scanning-alerts-in-issues-using-task-lists)"{% endif %}

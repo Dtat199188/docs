@@ -25,7 +25,6 @@ Depois de adicionar uma nova chave SSH à sua conta em {% ifversion ghae %}{% da
 
 {% mac %}
 
-{% include tool-switcher %}
 {% webui %}
 
 1. Copie a chave pública SSH para a sua área de transferência.
@@ -43,21 +42,19 @@ Depois de adicionar uma nova chave SSH à sua conta em {% ifversion ghae %}{% da
 
   {% endtip %}
 
-{% data reusables.user_settings.access_settings %}
-{% data reusables.user_settings.ssh %}
+{% data reusables.user-settings.access_settings %}
+{% data reusables.user-settings.ssh %}
 4. Clique em **New SSH key** (Nova chave SSH) ou **Add SSH key** (Adicionar chave SSH). ![Botão SSH Key (Chave SSH)](/assets/images/help/settings/ssh-add-ssh-key.png)
 5. No campo "Title" (Título), adicione uma etiqueta descritiva para a nova chave. Por exemplo, se estiver usando um Mac pessoal, você poderá chamar essa chave de "Personal MacBook Air".
 6. Cole sua chave no campo "Key" (Chave). ![O campo de chave](/assets/images/help/settings/ssh-key-paste.png)
 7. Clique em **Add SSH key** (Adicionar chave SSH). ![O botão Add key (Adicionar chave)](/assets/images/help/settings/ssh-add-key.png)
-{% data reusables.user_settings.sudo-mode-popup %}
+{% data reusables.user-settings.sudo-mode-popup %}
 
 {% endwebui %}
 
 {% endmac %}
 
 {% windows %}
-
-{% include tool-switcher %}
 
 {% webui %}
 
@@ -76,8 +73,8 @@ Depois de adicionar uma nova chave SSH à sua conta em {% ifversion ghae %}{% da
 
   {% endtip %}
 
-{% data reusables.user_settings.access_settings %}
-{% data reusables.user_settings.ssh %}
+{% data reusables.user-settings.access_settings %}
+{% data reusables.user-settings.ssh %}
 4. Clique em **New SSH key** (Nova chave SSH) ou **Add SSH key** (Adicionar chave SSH). ![Botão SSH Key (Chave SSH)](/assets/images/help/settings/ssh-add-ssh-key.png)
 5. No campo "Title" (Título), adicione uma etiqueta descritiva para a nova chave. Por exemplo, se estiver usando um Mac pessoal, você poderá chamar essa chave de "Personal MacBook Air".
 6. Cole sua chave no campo "Key" (Chave). ![O campo de chave](/assets/images/help/settings/ssh-key-paste.png)
@@ -90,7 +87,6 @@ Depois de adicionar uma nova chave SSH à sua conta em {% ifversion ghae %}{% da
 
 {% linux %}
 
-{% include tool-switcher %}
 {% webui %}
 
 1. Copie a chave pública SSH para a sua área de transferência.
@@ -109,8 +105,8 @@ Depois de adicionar uma nova chave SSH à sua conta em {% ifversion ghae %}{% da
 
   {% endtip %}
 
-{% data reusables.user_settings.access_settings %}
-{% data reusables.user_settings.ssh %}
+{% data reusables.user-settings.access_settings %}
+{% data reusables.user-settings.ssh %}
 4. Clique em **New SSH key** (Nova chave SSH) ou **Add SSH key** (Adicionar chave SSH). ![Botão SSH Key (Chave SSH)](/assets/images/help/settings/ssh-add-ssh-key.png)
 5. No campo "Title" (Título), adicione uma etiqueta descritiva para a nova chave. Por exemplo, se estiver usando um Mac pessoal, você poderá chamar essa chave de "Personal MacBook Air".
 6. Cole sua chave no campo "Key" (Chave). ![O campo de chave](/assets/images/help/settings/ssh-key-paste.png)
@@ -125,6 +121,8 @@ Depois de adicionar uma nova chave SSH à sua conta em {% ifversion ghae %}{% da
 
 {% data reusables.cli.cli-learn-more %}
 
+Antes de poder usar o {% data variables.product.prodname_cli %} para adicionar uma chave SSH à sua conta, você deve efetuar a autenticação no {% data variables.product.prodname_cli %}. Para obter mais informações, consulte [`login login gh`](https://cli.github.com/manual/gh_auth_login) na documentação do {% data variables.product.prodname_cli %}.
+
 Para adicionar uma chave SSH à sua conta do GitHub, use o subcomando `ssh-key add`, especificando a sua chave pública.
 
 ```shell
@@ -135,6 +133,12 @@ Para incluir um título para a nova chave, use o sinalizador `-t` ou `--title`.
 
 ```shell
 gh ssh-key add <em>key-file</em> --title "personal laptop"
+```
+
+Se você gerou a sua chave SSH seguindo as instruções em "[Gerando uma nova chave SSH](/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)", você pode adicionar a chave à sua conta usando este comando.
+
+```shell
+gh ssh-key add ~/.ssh/id_ed25519.pub
 ```
 
 {% endcli %}

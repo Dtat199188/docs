@@ -69,7 +69,7 @@ sections:
         - |
           [{% data variables.product.prodname_mobile %}](https://github.com/mobile) o filtro permite que você procure e encontre problemas, pull requests e discussões do seu dispositivo. Novos metadados para problemas e itens da lista de pull request permitem que você filtre por responsáveis, verifique status, status de revisão e contagens de comentários.
 
-          A beta de {% data variables.product.prodname_mobile %} está disponível para {% data variables.product.prodname_ghe_server %}. Efetue o login com os nossos aplicativos de [Android](https://play.google.com/store/apps/details?id=com. ithub.android) e [iOS](https://apps.apple.com/app/github/id1477376905) para triar as notificações e gerenciar problemas e pull requests em qualquer lugar. Os administradores podem desabilitar o suporte móvel para sua empresa usando o console de gerenciamento ou executando o `ghe-config app.mobile.enabled false`. Para mais informações, consulte "[GitHub for mobile](/github/getting-started-with-github/using-github/github-for-mobile)."
+          A beta de {% data variables.product.prodname_mobile %} está disponível para {% data variables.product.prodname_ghe_server %}. Efetue o login com os nossos aplicativos de [Android](https://play.google.com/store/apps/details?id=com.github.android) e [iOS](https://apps.apple.com/app/github/id1477376905) para triar as notificações e gerenciar problemas e pull requests em qualquer lugar. Os administradores podem desabilitar o suporte móvel para sua empresa usando o console de gerenciamento ou executando o `ghe-config app.mobile.enabled false`. Para mais informações, consulte "[GitHub Mobile](/get-started/using-github/github-mobile)."
   changes:
     - 
       heading: Alterações na administração

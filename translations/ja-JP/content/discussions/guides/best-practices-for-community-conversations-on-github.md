@@ -23,11 +23,11 @@ Issue のオープンおよびディスカッションの相互参照につい�
 希望する会話のタイプに応じて、ディスカッション、Issue、プルリクエストを作成して参加できます。
 
 {% data variables.product.prodname_discussions %} を使用して、全体像のアイデアについて話し合い、ブレインストーミングを行って、プロジェクトを Issue にコミットする前にプロジェクトの特定の詳細をスパイクして、スコープを設定できます。 {% data variables.product.prodname_discussions %} is useful for teams if:
-- プロジェクトの発見段階で、Team が参加するディレクターを検討している場合
+- You are in the discovery phase of a project and are still learning which direction your team wants to go in
 - より広いコミュニティからプロジェクトについてのフィードバックを収集する必要がある場合
 - バグ修正、機能リクエスト、一般的な会話を別々に保持する必要がある場合
 
-Issueは、バグレポートや計画された改善など、プロジェクトの特定の詳細についての議論に役立ちます。 詳細は「[Issue について](/articles/about-issues)」を参照してください。 プルリクエストでは、提案された変更に直接コメントできます。 詳しい情報については[プルリクエストについて](/articles/about-pull-requests)及び[プルリクエストへコメントする](/articles/commenting-on-a-pull-request)を参照してください。
+Issueは、バグレポートや計画された改善など、プロジェクトの特定の詳細についての議論に役立ちます。 詳細は「[Issue について](/articles/about-issues)」を参照してください。 プルリクエストでは、提案された変更に直接コメントできます。 詳しい情報については[プルリクエストについて](/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)及び[プルリクエストへコメントする](/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/commenting-on-a-pull-request)を参照してください。
 
 {% data reusables.organizations.team-discussions-purpose %}詳しい情報については「[Team ディスカッションについて](/organizations/collaborating-with-your-team/about-team-discussions)」を参照してください。
 

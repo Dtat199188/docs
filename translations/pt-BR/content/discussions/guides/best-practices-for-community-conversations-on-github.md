@@ -23,11 +23,11 @@ Para mais informações sobre como abrir um problema e fazer referências cruzad
 Você pode criar e participar de discussões, problemas e pull requests, dependendo do tipo de conversa que você gostaria de ter.
 
 Você pode usar {% data variables.product.prodname_discussions %} para discutir o panorama geral, levantamento de hipóteses e desenvolver detalhes específicos de um projeto antes de vinculá-lo a um problema, que poderá ter o escopo definido. {% data variables.product.prodname_discussions %} é útil para equipes se:
-- Você está na fase de descoberta de um projeto e ainda está aprendendo qual diretor sua equipe quer acessar
+- Você está na fase de descoberta de um projeto e ainda está aprendendo qual direção a sua equipe quer acessar
 - Você deseja coletar comentários de uma comunidade mais ampla sobre um projeto
 - Você deseja manter correções de erros, solicitações de recursos e conversas gerais separadas
 
-Os problemas são úteis para discutir detalhes específicos de um projeto, como relatórios de erros e melhorias planejadas. Para obter mais informações, consulte "[Sobre problemas](/articles/about-issues)". As pull requests permitem comentar diretamente nas alterações propostas. Para obter mais informações, consulte "[Sobre pull requests](/articles/about-pull-requests)" e "[Comentar em uma pull request](/articles/commenting-on-a-pull-request)".
+Os problemas são úteis para discutir detalhes específicos de um projeto, como relatórios de erros e melhorias planejadas. Para obter mais informações, consulte "[Sobre problemas](/articles/about-issues)". As pull requests permitem comentar diretamente nas alterações propostas. Para obter mais informações, consulte "[Sobre pull requests](/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)" e "[Comentar em uma pull request](/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/commenting-on-a-pull-request)".
 
 {% data reusables.organizations.team-discussions-purpose %} Para obter mais informações, consulte "[Sobre discussões de equipe](/organizations/collaborating-with-your-team/about-team-discussions)."
 

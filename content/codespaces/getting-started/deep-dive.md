@@ -24,7 +24,7 @@ There are a number of entry points to create a codespace.
   
 Your codespace can be ephemeral if you need to test something or you can return to the same codespace to work on long-running feature work. For more information, see "[Creating a codespace](/codespaces/developing-in-codespaces/creating-a-codespace)."
 
-Once you've selected the option to create a new codespace, some steps happen in the background before the codespace is available to you.
+Once you've selected the option to create a new codespace, and chosen a machine type for your codespace, some steps happen in the background before the codespace is available to you.
 
 ![Open with Codespaces button](/assets/images/help/codespaces/new-codespace-button.png)
 
@@ -116,3 +116,4 @@ If you already use {% data variables.product.prodname_vscode %}, you can use [Se
 - [Enabling {% data variables.product.prodname_codespaces %} for your organization](/codespaces/managing-codespaces-for-your-organization/enabling-codespaces-for-your-organization)
 - [Managing billing for {% data variables.product.prodname_codespaces %} in your organization](/codespaces/managing-codespaces-for-your-organization/managing-billing-for-codespaces-in-your-organization)
 - [Setting up your project for Codespaces](/codespaces/setting-up-your-project-for-codespaces)
+- [Codespaces lifecycle](/codespaces/developing-in-codespaces/codespaces-lifecycle)

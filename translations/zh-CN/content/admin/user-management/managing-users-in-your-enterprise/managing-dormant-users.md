@@ -1,13 +1,14 @@
 ---
 title: 管理休眠用户
 redirect_from:
-  - /enterprise/admin/articles/dormant-users/
-  - /enterprise/admin/articles/viewing-dormant-users/
-  - /enterprise/admin/articles/determining-whether-a-user-account-is-dormant/
+  - /enterprise/admin/articles/dormant-users
+  - /enterprise/admin/articles/viewing-dormant-users
+  - /enterprise/admin/articles/determining-whether-a-user-account-is-dormant
   - /enterprise/admin/user-management/managing-dormant-users
   - /admin/user-management/managing-dormant-users
-intro: '如果用户帐户至少在一个月内未激活，则被视为休眠状态。{% ifversion ghes %} 您可以选择暂停休眠用户以释放用户许可。{% endif %}'
+intro: '{% data reusables.enterprise-accounts.dormant-user-activity-threshold %}'
 versions:
+  ghec: '*'
   ghes: '*'
   ghae: '*'
 type: how_to
@@ -17,16 +18,12 @@ topics:
   - Licensing
 ---
 
-“活动”包括但不限于：
-- 登录 {% data variables.product.product_name %}。
-- 评论问题和拉取请求。
-- 创建、删除、关注仓库和加星标。
-- 推送提交。{% ifversion ghes or ghae %}
-- 使用个人访问令牌或 SSH 密钥访问资源。{% endif %}
+{% data reusables.enterprise-accounts.dormant-user-activity %}
 
+{% ifversion ghes or ghae%}
 ## 查看休眠用户
 
-您可以查看未被挂起和不属于站点管理员的所有休眠用户的列表。
+{% data reusables.enterprise-accounts.viewing-dormant-users %}
 
 {% data reusables.enterprise_site_admin_settings.access-settings %}
 3. 在左侧边栏中，单击 **Dormant users**。 ![Dormant users tab](/assets/images/enterprise/site-admin-settings/dormant-users-tab.png){% ifversion ghes %}
@@ -44,10 +41,21 @@ topics:
 {% data reusables.enterprise_site_admin_settings.dormancy-threshold %}
 
 {% data reusables.enterprise-accounts.access-enterprise %}
-{% ifversion ghes or ghae %}
 {% data reusables.enterprise-accounts.policies-tab %}
-{% else %}
 {% data reusables.enterprise-accounts.settings-tab %}
-{% endif %}
 {% data reusables.enterprise-accounts.options-tab %}
 4. 在“Dormancy threshold”，使用下拉菜单，然后单击所需的休眠阈值。 ![Dormancy threshold 下拉菜单](/assets/images/enterprise/site-admin-settings/dormancy-threshold-menu.png)
+
+{% endif %}
+
+{% ifversion ghec %}
+
+{% data reusables.enterprise-accounts.dormant-user-release-phase %}
+
+## 从企业帐户下载休眠用户报告
+
+{% data reusables.enterprise-accounts.access-enterprise %}
+{% data reusables.enterprise-accounts.enterprise-accounts-compliance-tab %}
+1. 要将休眠用户（测试版）报告下载为 CSV 文件，请在“Other（其他）”下点击 {% octicon "download" aria-label="The Download icon" %} **Download（下载）**。 ![Compliance（合规）页面上"Other（其他）"下的 Download（下载）按钮](/assets/images/help/business-accounts/dormant-users-download-button.png)
+
+{% endif %}

@@ -3,15 +3,15 @@ title: 升级 GitHub Enterprise Server
 intro: '升级 {% data variables.product.prodname_ghe_server %}，以获取最新功能和安全更新。'
 redirect_from:
   - /enterprise/admin/installation/upgrading-github-enterprise-server
-  - /enterprise/admin/articles/upgrading-to-the-latest-release/
-  - /enterprise/admin/articles/migrations-and-upgrades/
-  - /enterprise/admin/guides/installation/upgrading-the-github-enterprise-virtual-machine/
-  - /enterprise/admin/guides/installation/upgrade-packages-for-older-releases/
-  - /enterprise/admin/articles/upgrading-older-installations/
-  - /enterprise/admin/hidden/upgrading-older-installations/
-  - /enterprise/admin/hidden/upgrading-github-enterprise-using-a-hotpatch-early-access-program/
-  - /enterprise/admin/hidden/upgrading-github-enterprise-using-a-hotpatch/
-  - /enterprise/admin/guides/installation/upgrading-github-enterprise/
+  - /enterprise/admin/articles/upgrading-to-the-latest-release
+  - /enterprise/admin/articles/migrations-and-upgrades
+  - /enterprise/admin/guides/installation/upgrading-the-github-enterprise-virtual-machine
+  - /enterprise/admin/guides/installation/upgrade-packages-for-older-releases
+  - /enterprise/admin/articles/upgrading-older-installations
+  - /enterprise/admin/hidden/upgrading-older-installations
+  - /enterprise/admin/hidden/upgrading-github-enterprise-using-a-hotpatch-early-access-program
+  - /enterprise/admin/hidden/upgrading-github-enterprise-using-a-hotpatch
+  - /enterprise/admin/guides/installation/upgrading-github-enterprise
   - /enterprise/admin/enterprise-management/upgrading-github-enterprise-server
   - /admin/enterprise-management/upgrading-github-enterprise-server
 versions:
@@ -23,9 +23,11 @@ topics:
 shortTitle: 升级 GHES
 ---
 
+{% ifversion ghes < 3.3 %}{% data reusables.enterprise.upgrade-ghes-for-features %}{% endif %}
+
 ## 准备升级
 
-1. 确定升级策略并选择要升级到的版本。 更多信息请参阅“[升级要求](/enterprise/{{ currentVersion }}/admin/guides/installation/upgrade-requirements/)”。
+1. 确定升级策略并选择要升级到的版本。 更多信息请参阅“[升级要求](/enterprise/{{ currentVersion }}/admin/guides/installation/upgrade-requirements/)”，并参考 [{% data variables.enterprise.upgrade_assistant %}](https://support.github.com/enterprise/server-upgrade) 以查找当前发行版的升级路径。
 3. 使用 {% data variables.product.prodname_enterprise_backup_utilities %} 创建全新的主实例备份。 更多信息请参阅 [{% data variables.product.prodname_enterprise_backup_utilities %} README.md 文件](https://github.com/github/backup-utils#readme)。
 4. 如果您要使用升级包进行升级，请为 {% data variables.product.prodname_ghe_server %} 最终用户排定维护窗口。 如果您要使用热补丁，则不需要使用维护模式。
 
@@ -39,7 +41,9 @@ shortTitle: 升级 GHES
 
 ## 生成快照
 
-快照是虚拟机 (VM) 在某一时间点的检查点。 强烈建议在升级虚拟机之前生成快照，这样一来，如果升级失败，您可以将 VM 还原到快照状态。 如果您要升级到新的功能版本，则必须生成 VM 快照。 如果您要升级到补丁版本，可以连接现有数据磁盘。
+快照是虚拟机 (VM) 在某一时间点的检查点。 强烈建议在升级虚拟机之前生成快照，这样一来，如果升级失败，您可以将 VM 还原到快照状态。 我们仅建议在设备关闭电源或处于维护模式且所有后台作业都已完成时拍摄 VM 快照。
+
+如果您要升级到新的功能版本，则必须生成 VM 快照。 如果您要升级到补丁版本，可以连接现有数据磁盘。
 
 有两种类型的快照：
 
@@ -54,18 +58,20 @@ shortTitle: 升级 GHES
 
   {% endnote %}
 
-| 平台                    | 快照方法 | 快照文档 URL                                                                                                                                                                                               |
-| --------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Amazon AWS            | 磁盘   | <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-snapshot.html>                                                                                                                       |
-| Azure                 | VM   | <https://docs.microsoft.com/azure/backup/backup-azure-vms-first-look-arm>                                                                                                                              |
-| Hyper-V               | VM   | <https://docs.microsoft.com/windows-server/virtualization/hyper-v/manage/enable-or-disable-checkpoints-in-hyper-v>                                                                                     |
-| Google Compute Engine | 磁盘   | <https://cloud.google.com/compute/docs/disks/create-snapshots>                                                                                                                                         |
-| VMware                | VM   | [https://pubs.vmware.com/vsphere-50/topic/com.vmware.wssdk.pg.doc_50/PG_Ch11_VM_Manage.13.3.html](https://pubs.vmware.com/vsphere-50/topic/com.vmware.wssdk.pg.doc_50/PG_Ch11_VM_Manage.13.3.html) |
-| XenServer             | VM   | <https://docs.citrix.com/en-us/xencenter/current-release/vms-snapshots.html>                                                                                                                           |
+| 平台                    | 快照方法 | 快照文档 URL                                                                                                                                                                                                                         |
+| --------------------- | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Amazon AWS            | 磁盘   | <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-snapshot.html>                                                                                                                                                 |
+| Azure                 | VM   | <https://docs.microsoft.com/azure/backup/backup-azure-vms-first-look-arm>                                                                                                                                                        |
+| Hyper-V               | VM   | <https://docs.microsoft.com/windows-server/virtualization/hyper-v/manage/enable-or-disable-checkpoints-in-hyper-v>                                                                                                               |
+| Google Compute Engine | 磁盘   | <https://cloud.google.com/compute/docs/disks/create-snapshots>                                                                                                                                                                   |
+| VMware                | VM   | [https://pubs.vmware.com/vsphere-50/topic/com.vmware.wssdk.pg.doc_50/PG_Ch11_VM_Manage.13.3.html](https://pubs.vmware.com/vsphere-50/topic/com.vmware.wssdk.pg.doc_50/PG_Ch11_VM_Manage.13.3.html){% ifversion ghes < 3.3 %}
+| XenServer             | VM   | <https://docs.citrix.com/en-us/xencenter/current-release/vms-snapshots.html>{% endif %}
 
 ## 使用热补丁升级
 
-{% data reusables.enterprise_installation.hotpatching-explanation %} 利用 {% data variables.enterprise.management_console %}，您可以立即安装热补丁，也可以排定稍后安装热补丁。 您可以使用管理 shell 的 `ghe-upgrade` 实用程序安装热补丁。 更多信息请参阅“[升级要求](/enterprise/{{ currentVersion }}/admin/guides/installation/upgrade-requirements/)”。
+{% data reusables.enterprise_installation.hotpatching-explanation %}
+
+使用 {% data variables.enterprise.management_console %}，您可以立即安装热补丁，也可以安排以后安装。 您可以使用管理 shell 的 `ghe-upgrade` 实用程序安装热补丁。 更多信息请参阅“[升级要求](/enterprise/{{ currentVersion }}/admin/guides/installation/upgrade-requirements/)”。
 
 {% note %}
 
@@ -81,6 +87,10 @@ shortTitle: 升级 GHES
 ### 使用热补丁升级单个设备
 
 #### 使用 {% data variables.enterprise.management_console %} 安装热补丁
+
+您可以通过启用自动更新来使用 {% data variables.enterprise.management_console %} 通过热补丁进行升级。 然后，您将看到可升级到的最新可用 {% data variables.product.prodname_ghe_server %} 版本。
+
+如果显示的升级目标是功能版本而不是修补程序版本，则无法使用 {% data variables.enterprise.management_console %} 来安装修补程序。 您必须改为使用管理 shell 安装热补丁。 更多信息请参阅“[使用管理 shell 安装热补丁](#installing-a-hotpatch-using-the-administrative-shell)”。
 
 1. 启用自动更新。 更多信息请参阅“[启用自动更新](/enterprise/{{ currentVersion }}/admin/guides/installation/enabling-automatic-update-checks/)”。
 {% data reusables.enterprise_site_admin_settings.access-settings %}
@@ -211,11 +221,8 @@ shortTitle: 升级 GHES
 
    {% endnote %}
 
-   如果 `ghe-repl-status` 未返回 `OK`，请执行以下步骤手动启动复制。
+   如果 `ghe-repl-status` 未返回 `OK`，请联系 {% data variables.contact.enterprise_support %}。 更多信息请参阅“[从 {% data variables.contact.github_support %} 获取帮助](/admin/enterprise-support/receiving-help-from-github-support)”。
 
-   1. 在副本实例上，再次运行 `ghe-repl-setup <primary-instance-ip>`。
-   {% data reusables.enterprise_installation.start-replication %}
-   {% data reusables.enterprise_installation.replication-status %}
 6. 最后一个副本升级完毕且重新同步完成后，请禁用维护模式，以便用户能够使用 {% data variables.product.product_location %}。
 
 ## 从失败的升级中恢复
@@ -224,7 +231,9 @@ shortTitle: 升级 GHES
 
 ### 回滚补丁版本
 
-要回滚补丁版本，请使用带 `--allow-patch-rollback` 开关的 `ghe-upgrade` 命令。 {% data reusables.enterprise_installation.command-line-utilities-ghe-upgrade-rollback %}
+要回滚补丁版本，请使用带 `--allow-patch-rollback` 开关的 `ghe-upgrade` 命令。 在回滚之前，必须通过在所有副本实例上运行 `ghe-repl-stop` 来暂时停止复制。 {% data reusables.enterprise_installation.command-line-utilities-ghe-upgrade-rollback %}
+
+回滚完成后，通过在所有副本上运行 `ghe-repl-start` 来重新启动复制。
 
 更多信息请参阅“[命令行实用程序](/enterprise/{{ currentVersion }}/admin/guides/installation/command-line-utilities/#ghe-upgrade)”。
 

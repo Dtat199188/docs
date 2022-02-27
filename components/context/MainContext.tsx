@@ -23,6 +23,9 @@ export type ProductGroupT = {
 type VersionItem = {
   version: string
   versionTitle: string
+  currentRelease: string
+  latestVersion: string
+  shortName: string
 }
 
 export type ProductTreeNode = {

@@ -28,7 +28,7 @@ topics:
 
 {% ifversion fpt or ghes or ghec %}
 - {% data reusables.search.required_login %}{% endif %}
-- [复刻](/articles/about-forks)中的代码仅当复刻的星号超过父级仓库时可搜索。 星号少于父仓库的复刻**不**为代码搜索编索引。 要在搜索结果中包括星号比其父项多的复刻，您需要将 `fork:true` 或 `fork:only` 添加到查询。 更多信息请参阅“[在复刻中搜索](/search-github/searching-on-github/searching-in-forks)”。
+- [复刻](/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks)中的代码仅当复刻的星号超过父级仓库时可搜索。 星号少于父仓库的复刻**不**为代码搜索编索引。 要在搜索结果中包括星号比其父项多的复刻，您需要将 `fork:true` 或 `fork:only` 添加到查询。 更多信息请参阅“[在复刻中搜索](/search-github/searching-on-github/searching-in-forks)”。
 - 只有_默认分支_被索引用于代码搜索。{% ifversion fpt or ghec %}
 - 只有小于 384 KB 的文件可搜索。{% else %}* 只有小于 5 MB 的文件可搜索。
 - 只有每个文件的前 500 KB 可搜索。{% endif %}
@@ -62,11 +62,11 @@ topics:
 
 您可使用 `path` 限定符搜索仓库中特定位置显示的源代码。 使用 `path:/` 可搜索位于仓库根目录级别的文件。 或者，指定目录名称或目录路径以搜索位于该命令或其任何子目录中的文件。
 
-| 限定符                        | 示例                                                                                                                                                                                                                                                                                                                               |
-| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <code>path:/</code>  | [**octocat filename:readme path:/**](https://github.com/search?utf8=%E2%9C%93&q=octocat+filename%3Areadme+path%3A%2F&type=Code) 匹配位于仓库根目录级别且含有 "octocat" 字样的 _readme_ 文件。                                                                                                                                                        |
-| <code>path:<em>DIRECTORY</em></code>  | [**form path:cgi-bin language:perl**](https://github.com/search?q=form+path%3Acgi-bin+language%3Aperl&type=Code) matches Perl files with the word "form" in the <em>cgi-bin</em> directory, or in any of its subdirectories.                                                                                              |
-| <code>path:<em>PATH/TO/DIRECTORY</em></code> | [**console path:app/public language:javascript**](https://github.com/search?q=console+path%3A%22app%2Fpublic%22+language%3Ajavascript&type=Code) matches JavaScript files with the word "console" in the <em>app/public</em> directory, or in any of its subdirectories (even if they reside in <em>app/public/js/form-validators</em>). |
+| 限定符                        | 示例                                                                                                                                                                                                                                                                                                                                 |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <code>path:/</code>  | [**octocat filename:readme path:/**](https://github.com/search?utf8=%E2%9C%93&q=octocat+filename%3Areadme+path%3A%2F&type=Code) 匹配位于仓库根目录级别且含有 "octocat" 字样的 _readme_ 文件。                                                                                                                                                          |
+| <code>path:<em>DIRECTORY</em></code>  | [**form path:cgi-bin language:perl**](https://github.com/search?q=form+path%3Acgi-bin+language%3Aperl&type=Code) matches Perl files with the word "form" in the <em>cgi-bin</em> directory, or in any of its subdirectories.                                                                                                |
+| <code>path:<em>PATH/TO/DIRECTORY</em></code> | [**`console path:app/public language:javascript`**](https://github.com/search?q=console+path%3A%22app%2Fpublic%22+language%3Ajavascript&type=Code) matches JavaScript files with the word "console" in the <em>app/public</em> directory, or in any of its subdirectories (even if they reside in <em>app/public/js/form-validators</em>). |
 
 ## 按语言搜索
 <!-- If you make changes to this feature, update /getting-started-with-github/github-language-support to reflect any changes. -->

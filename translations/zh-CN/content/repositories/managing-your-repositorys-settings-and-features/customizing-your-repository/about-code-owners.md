@@ -2,7 +2,7 @@
 title: 关于代码所有者
 intro: 您可以使用 CODEOWNERS 文件定义负责仓库代码的个人或团队。
 redirect_from:
-  - /articles/about-codeowners/
+  - /articles/about-codeowners
   - /articles/about-code-owners
   - /github/creating-cloning-and-archiving-repositories/about-code-owners
   - /github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/about-code-owners
@@ -18,15 +18,13 @@ topics:
 
 具有管理员或所有者权限的人员可以在仓库中创建 CODEOWNERS 文件。
 
-您选择作为代码所有者的人员必须具有仓库的写入权限。 When the code owner is a team, that team must be visible and it must have write permissions, even if all the individual members of the team already have write permissions directly, through organization membership, or through another team membership.
+您选择作为代码所有者的人员必须具有仓库的读取权限。 当代码所有者是团队时，该团队必须可见且必须拥有写入权限，即使团队的所有成员都已经直接通过组织成员资格或通过另一个团队成员资格直接拥有写入权限。
 
 ## 关于代码所有者
 
 当有人打开修改代码的拉取请求时，将自动请求代码所有者进行审查。 不会自动请求代码所有者审查拉取请求草稿。 有关拉取请求草稿的更多信息，请参阅“[关于拉取请求](/github/collaborating-with-issues-and-pull-requests/about-pull-requests#draft-pull-requests)”。 不会自动请求代码所有者审查拉取请求草稿。 如果将拉取请求转换为草稿，则已订阅通知的用户不会自动取消订阅。 更多信息请参阅“[更改拉取请求的阶段](/github/collaborating-with-issues-and-pull-requests/changing-the-stage-of-a-pull-request)”。
 
 当具有管理员或所有者权限的人员启用必需审查时，他们也可选择性要求代码所有者批准后，作者才可合并仓库中的拉取请求。 更多信息请参阅“[关于受保护分支](/github/administering-a-repository/about-protected-branches#require-pull-request-reviews-before-merging)”。
-
-{% ifversion fpt or ghae or ghes or ghec %}如果团队启用了代码审查分配，则个别审批无法满足受保护分支中代码所有者审批的要求。 更多信息请参阅“[管理团队的代码审查分配](/organizations/organizing-members-into-teams/managing-code-review-assignment-for-your-team)”。{% endif %}
 
 如果文件具有代码所有者，则在打开拉取请求之前可以看到代码所有者是谁。 在仓库中，您可以找到文件并悬停于 {% octicon "shield-lock" aria-label="The edit icon" %} 上。
 
@@ -40,19 +38,26 @@ topics:
 
 为使代码所有者接收审查请求，CODEOWNERS 文件必须在拉取请求的基本分支上。 例如，如果您将 `@octocat` 分配为仓库 `gh-pages` 分支上 *.js* 文件的代码所有者，则在头部分支与 `gh-pages` 之间打开更改 *.js* 文件的拉取请求时，`@octocat` 将会收到审查请求。
 
-{% ifversion fpt or ghae or ghes > 3.2 or ghec %}
-## CODEOWNERS file size
+{% ifversion fpt or ghec or ghes > 3.2 or ghae-issue-9273 %}
+## CODEOWNERS 文件大小
 
-CODEOWNERS files must be under 3 MB in size. A CODEOWNERS file over this limit will not be loaded, which means that code owner information not to be shown and the appropriate code owners will not be requested to review changes in a pull request.
+CODEOWNERS 文件大小必须低于 3MB。 将不会加载超过此限制的 CODEOWNERS 文件，这意味着不会显示代码所有者信息，并且不会要求相应的代码所有者查看拉取请求中的更改。
 
-To reduce the size of your CODEOWNERS file, consider using wildcard patterns to consolidate multiple entries into a single entry.
+要减小 CODEOWNERS 文件的大小，请考虑使用通配符模式将多个条目合并为单个条目。
 {% endif %}
 
 ## CODEOWNERS 语法
 
-CODEOWNERS 文件使用遵循 [gitignore](https://git-scm.com/docs/gitignore#_pattern_format) 文件中所用大多数规则的模式，但有[一些例外](#syntax-exceptions)。 模式后接一个或多个使用标准 `@username` 或 `@org/team-name` 格式的 {% data variables.product.prodname_dotcom %} 用户名或团队名称。 Users must have `read` access to the repository and teams must have explicit `write` access, even if the team's members already have access. You can also refer to a user by an email address that has been added to their account on {% ifversion ghae %}{% data variables.product.product_name %}{% else %}{% data variables.product.product_location %}{% endif %}, for example `user@example.com`.
+CODEOWNERS 文件使用遵循 [gitignore](https://git-scm.com/docs/gitignore#_pattern_format) 文件中所用大多数规则的模式，但有[一些例外](#syntax-exceptions)。 模式后接一个或多个使用标准 `@username` 或 `@org/team-name` 格式的 {% data variables.product.prodname_dotcom %} 用户名或团队名称。 用户必须具有对存储库的`读取`权限，并且团队必须具有显式`写入`权限，即使团队成员已具有访问权限也是如此。 您还可以通过已添加到用户在 {% ifversion ghae %}{% data variables.product.product_name %}{% else %}{% data variables.product.product_location %}{% endif %} 上帐户的电子邮件地址来引用用户，例如 `user@example.com`。
 
+CODEOWNERS 路径区分大小写，因为 {% data variables.product.prodname_dotcom %} 使用区分大小写的文件系统。 由于 CODEOWNERS 是由 {% data variables.product.prodname_dotcom %} 评估的，因此即使是不区分大小写的系统（例如 macOS）也必须使用在 CODEOWNERS 文件中正确大小写的路径和文件。
+
+{% if codeowners-errors %}
+如果 CODEOWNERS 文件中的任何行包含无效语法，则该行将被跳过。 当您在 {% ifversion ghae %}{% data variables.product.product_name %}{% else %}{% data variables.product.product_location %}{% endif %} 上导航到存储库中的 CODEOWNERS 文件时，您可以看到突出显示的任何错误。 存储库的 CODEOWNERS 文件中的错误列表也可以通过 API 访问。 更多信息请参阅 REST API 文档中的“[仓库](/rest/reference/repos#list-codeowners-errors)”。
+{% else %}
 如果 CODEOWNERS 文件中的任何行包含无效语法，则该文件将不会被检测并且不会用于请求审查。
+{% endif %}
+
 ### CODEOWNERS 文件示例
 ```
 # This is a comment.
@@ -100,11 +105,15 @@ apps/ @octocat
 # subdirectories.
 /docs/ @doctocat
 
-# In this example, @octocat owns any file in the `/apps` 
-# directory in the root of your repository except for the `/apps/github` 
+# In this example, any change inside the `/scripts` directory
+# will require approval from @doctocat or @octocat.
+/scripts/ @doctocat @octocat
+
+# In this example, @octocat owns any file in the `/apps`
+# directory in the root of your repository except for the `/apps/github`
 # subdirectory, as its owners are left empty.
 /apps/ @octocat
-/apps/github 
+/apps/github
 ```
 ### 语法例外
 gitignore 文件有一些语法规则在 CODEOWNERS 文件中不起作用：
@@ -112,27 +121,8 @@ gitignore 文件有一些语法规则在 CODEOWNERS 文件中不起作用：
 - 使用 `!` 否定模式
 - 使用 `[ ]` 定义字符范围
 
-## CODEOWNERS and branch protection
-Repository owners can add branch protection rules to ensure that changed code is reviewed by the owners of the changed files. 更多信息请参阅“[关于受保护分支](/github/administering-a-repository/defining-the-mergeability-of-pull-requests/about-protected-branches)”。
-
-### CODEOWNERS 文件示例
-```
-# In this example, any change inside the `/apps` directory
-# will require approval from @doctocat.
-/apps/ @doctocat
-
-# In this example, any change inside the `/apps` directory
-# will require approval from @doctocat or @octocat.
-/apps/ @doctocat @octocat
-
-# In this example, any change inside the `/apps` directory
-# will require approval from a member of the @example-org/content team.
-# If a member of @example-org/content opens a pull request 
-# with a change inside the `/apps` directory, their approval is implicit.
-# The team is still added as a reviewer but not a required reviewer.
-# Anyone can approve the changes.
-/apps/ @example-org/content-team
-```
+## CODEOWNERS 和分支保护
+存储库所有者可以添加分支保护规则，以确保已更改文件的所有者审阅已更改的代码。 更多信息请参阅“[关于受保护分支](/github/administering-a-repository/defining-the-mergeability-of-pull-requests/about-protected-branches)”。
 
 
 ## 延伸阅读
@@ -141,4 +131,4 @@ Repository owners can add branch protection rules to ensure that changed code is
 - "[邀请个人仓库的协作者](/articles/inviting-collaborators-to-a-personal-repository)"
 - "[管理个人对组织仓库的访问](/articles/managing-an-individual-s-access-to-an-organization-repository)"
 - "[管理团队对组织仓库的访问](/articles/managing-team-access-to-an-organization-repository)"
-- "[查看拉取请求审查](/articles/viewing-a-pull-request-review)"
+- "[查看拉取请求审查](/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/viewing-a-pull-request-review)"
